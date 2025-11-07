@@ -1,0 +1,53 @@
+﻿@model CreateCinemaVM
+
+<div class="container">
+    <div class="row mb-3 align-items-center my-3">
+        <div class="col-md-6">
+            <h2 class="display-6">Create new Cinema</h2>
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-12">
+
+            <form method="post" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input class="form-control" name="Name" asp-for="Name">
+                    <span class="text-danger" asp-validation-for="@Model.Name"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Image" class="form-label">Image</label>
+                    <input class="form-control" name="FormImg" type="file" asp-for="FormImg">
+                    <span class="text-danger" asp-validation-for="@Model.FormImg"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @*   <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script> *@
+
+    @* <partial name="_ValidationScriptsPartial"></partial> *@
+
+    @if (TempData["Error"] is not null)
+    {
+        <text>
+            toastr.error('@TempData["Error"]');
+        </text>
+    }
+}
+
+
+
+
+
