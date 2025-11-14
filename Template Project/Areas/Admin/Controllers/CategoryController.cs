@@ -7,10 +7,17 @@ using Template_Project.ViewModel;
 
 namespace Template_Project.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         //ApplicationDbContext _context = new ApplicationDbContext();
-        Repository<Category> _categoryRepository = new Repository<Category>();
+        private readonly IRepository<Category> _categoryRepository;// = new Repository<Category>();
+
+        public CategoryController(IRepository<Category> categoryRepository)
+        {
+            _categoryRepository = categoryRepository;
+        }
+
         public async Task<ViewResult> Index(CancellationToken cancellationToken)
         {
             //var categories = _context.Categorys.AsQueryable();

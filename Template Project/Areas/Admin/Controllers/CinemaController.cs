@@ -7,10 +7,17 @@ using Template_Project.ViewModel;
 
 namespace Template_Project.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CinemaController : Controller
     {
         //ApplicationDbContext _context = new ApplicationDbContext();
-        Repository<Cinema> _cinemaRepository = new Repository<Cinema>();
+        private readonly IRepository<Cinema> _cinemaRepository;// = new Repository<Cinema>();
+
+        public CinemaController(IRepository<Cinema> cinemaRepository)
+        {
+            _cinemaRepository = cinemaRepository;
+        }
+
         public async Task<ViewResult> Index(CancellationToken cancellationToken)
         {
             //var cinemas = _context.Cinemas.AsQueryable();

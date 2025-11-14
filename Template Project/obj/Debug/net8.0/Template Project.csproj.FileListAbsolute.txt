@@ -264,3 +264,10 @@ E:\EraaSoft MVC\Projects\Template Project\Template Project\obj\Debug\net8.0\Temp
 E:\EraaSoft MVC\Projects\Template Project\Template Project\obj\Debug\net8.0\ref\Template Project.dll
 E:\EraaSoft MVC\Projects\Template Project\Template Project\obj\Debug\net8.0\scopedcss\Areas\Admin\Views\Shared\_Layout.cshtml.rz.scp.css
 E:\EraaSoft MVC\Projects\Template Project\Template Project\obj\Debug\net8.0\scopedcss\Areas\Customer\Views\Shared\_Layout.cshtml.rz.scp.css
+E:\EraaSoft MVC\Projects\Template Project\Template Project\obj\Debug\net8.0\Template Project.sourcelink.json
+E:\EraaSoft MVC\Projects\Template Project\Template Project\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\EraaSoft MVC\Projects\Template Project\Template Project\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\EraaSoft MVC\Projects\Template Project\Template Project\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\EraaSoft MVC\Projects\Template Project\Template Project\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+E:\EraaSoft MVC\Projects\Template Project\Template Project\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+E:\EraaSoft MVC\Projects\Template Project\Template Project\obj\Debug\net8.0\scopedcss\Areas\Identity\Views\Shared\_Layout.cshtml.rz.scp.css

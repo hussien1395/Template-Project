@@ -5,16 +5,28 @@ using System.Linq.Expressions;
 
 namespace Template_Project.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class MovieController : Controller
     {
         //ApplicationDbContext _context = new ApplicationDbContext();
         //ProductRepository _productRepository = new ProductRepository();
-        Repository<Category> _categoryRepository = new Repository<Category>();
-        Repository<Cinema> _cinemaRepository = new Repository<Cinema>();
-        Repository<Actor> _actorRepository = new Repository<Actor>();
-        Repository<Movie> _movieRepository = new Repository<Movie>();
-        Repository<MovieActor> _movieActorRepository = new Repository<MovieActor>();
-        Repository<MovieSubImage> _movieSubImageRepository = new Repository<MovieSubImage>();
+        private readonly IRepository<Category> _categoryRepository;// = new Repository<Category>();
+        private readonly IRepository<Cinema> _cinemaRepository;// = new Repository<Cinema>();
+        private readonly IRepository<Actor> _actorRepository;// = new Repository<Actor>();
+        private readonly IRepository<Movie> _movieRepository;//= new Repository<Movie>();
+        private readonly IRepository<MovieActor> _movieActorRepository;// = new Repository<MovieActor>();
+        private readonly IRepository<MovieSubImage> _movieSubImageRepository;// = new Repository<MovieSubImage>();
+
+        public MovieController(IRepository<Category> categoryRepository, IRepository<Cinema> cinemaRepository, IRepository<Actor> actorRepository, IRepository<Movie> movieRepository, 
+            IRepository<MovieActor> movieActorRepository, IRepository<MovieSubImage> movieSubImageRepository)
+        {
+            _categoryRepository = categoryRepository;
+            _cinemaRepository = cinemaRepository;
+            _actorRepository = actorRepository;
+            _movieRepository = movieRepository;
+            _movieActorRepository = movieActorRepository;
+            _movieSubImageRepository = movieSubImageRepository;
+        }
 
         public async Task<ViewResult> Index(CancellationToken cancellationToken)
         {

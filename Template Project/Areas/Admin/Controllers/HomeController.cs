@@ -4,6 +4,7 @@ using Template_Project.Models;
 
 namespace Template_Project.Controllers
 {
+    [Area("Admin")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
