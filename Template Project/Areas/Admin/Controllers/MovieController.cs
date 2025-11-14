@@ -1,21 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Drawing.Drawing2D;
 using System.Linq.Expressions;
+using Template_Project.Utilities;
 
 namespace Template_Project.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
     public class MovieController : Controller
     {
         //ApplicationDbContext _context = new ApplicationDbContext();
         //ProductRepository _productRepository = new ProductRepository();
-        Repository<Category> _categoryRepository = new Repository<Category>();
-        Repository<Cinema> _cinemaRepository = new Repository<Cinema>();
-        Repository<Actor> _actorRepository = new Repository<Actor>();
-        Repository<Movie> _movieRepository = new Repository<Movie>();
-        Repository<MovieActor> _movieActorRepository = new Repository<MovieActor>();
-        Repository<MovieSubImage> _movieSubImageRepository = new Repository<MovieSubImage>();
+        private readonly IRepository<Category> _categoryRepository;// = new Repository<Category>();
+        private readonly IRepository<Cinema> _cinemaRepository;// = new Repository<Cinema>();
+        private readonly IRepository<Actor> _actorRepository;// = new Repository<Actor>();
+        private readonly IRepository<Movie> _movieRepository;//= new Repository<Movie>();
+        private readonly IRepository<MovieActor> _movieActorRepository;// = new Repository<MovieActor>();
+        private readonly IRepository<MovieSubImage> _movieSubImageRepository;// = new Repository<MovieSubImage>();
 
+        public MovieController(IRepository<Category> categoryRepository, IRepository<Cinema> cinemaRepository, IRepository<Actor> actorRepository, IRepository<Movie> movieRepository, 
+            IRepository<MovieActor> movieActorRepository, IRepository<MovieSubImage> movieSubImageRepository)
+        {
+            _categoryRepository = categoryRepository;
+            _cinemaRepository = cinemaRepository;
+            _actorRepository = actorRepository;
+            _movieRepository = movieRepository;
+            _movieActorRepository = movieActorRepository;
+            _movieSubImageRepository = movieSubImageRepository;
+        }
+
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
         public async Task<ViewResult> Index(CancellationToken cancellationToken)
         {
             //var movies = _context.Products.Include(p=>p.Category).Include(p=>p.Brand).AsQueryable();
@@ -26,6 +42,7 @@ namespace Template_Project.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
         public async Task<IActionResult> Create(CancellationToken cancellationToken)
         {
             var vm = new MoviesVM
@@ -44,6 +61,7 @@ namespace Template_Project.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
         public async Task<IActionResult> Create(MoviesVM model, IFormFile img, List<IFormFile> SubImages, CancellationToken cancellationToken)
         {
             var movie = model.Movie;
@@ -110,6 +128,7 @@ namespace Template_Project.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}")]
         public async Task<IActionResult> Update(int? id, CancellationToken cancellationToken)
         {
             if (id == null)
@@ -150,6 +169,7 @@ namespace Template_Project.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}")]
         public async Task<IActionResult> Update(MoviesVM model, IFormFile img, List<IFormFile> SubImages, CancellationToken cancellationToken)
         {
             var movie = model.Movie;
@@ -212,6 +232,7 @@ namespace Template_Project.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}")]
         public async Task<IActionResult> Delete(int? id, CancellationToken cancellationToken)
         {
             if (id == null)
@@ -236,6 +257,7 @@ namespace Template_Project.Areas.Admin.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}")]
         public async Task<IActionResult> DeleteConfirmed(int id, CancellationToken cancellationToken)
         {
             var movie = await _movieRepository.GetOneAsync(
@@ -303,7 +325,7 @@ namespace Template_Project.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}")]
         public async Task<IActionResult> DeleteSubImage(int movieId, string img, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(img))

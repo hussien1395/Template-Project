@@ -1,16 +1,27 @@
 ﻿using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Drawing2D;
 using Template_Project.Models;
 using Template_Project.Repos;
+using Template_Project.Utilities;
 using Template_Project.ViewModel;
 
 namespace Template_Project.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
     public class ActorController : Controller
     {
         //ApplicationDbContext _context = new ApplicationDbContext();
-        Repository<Actor> _actorRepository = new Repository<Actor>();
+        private readonly IRepository<Actor> _actorRepository;//= new Repository<Actor>();
+
+        public ActorController(IRepository<Actor> actorRepository)
+        {
+            _actorRepository = actorRepository;
+        }
+
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
         public async Task<ViewResult> Index(CancellationToken cancellationToken)
         {
             //var actors = _context.Actors.AsQueryable();
@@ -19,11 +30,14 @@ namespace Template_Project.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
         public ViewResult Create()
         {
             return View();
         }
+
         [HttpPost]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
         public async Task<IActionResult> Create(CreateCategoryVM createActorVM, CancellationToken cancellationToken)
         {
             //ModelState.Remove(nameof(FormImg));
@@ -68,6 +82,7 @@ namespace Template_Project.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}")]
         public async Task<IActionResult> Update(int id, CancellationToken cancellationToken)
         {
             //var actor = _context.Actors.FirstOrDefault(c=>c.Id==id);
@@ -91,6 +106,7 @@ namespace Template_Project.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}")]
         public async Task<IActionResult> Update(UpdateActorVM updateActorVM, CancellationToken cancellationToken)
         {
             //var currentActor = _context.Actors.AsNoTracking().FirstOrDefault(b => b.Id == updateActorVM.Id);
@@ -146,6 +162,7 @@ namespace Template_Project.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}")]
         public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
         {
             //var actor = _context.Actors.FirstOrDefault(c => c.Id == id);

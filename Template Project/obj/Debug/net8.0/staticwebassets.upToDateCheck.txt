@@ -600,7 +600,6 @@ wwwroot\Uploads\Movies\MovieSubImages\7054ee3e-f39f-4d23-aa72-57a81d18cbb2-44.jp
 wwwroot\Uploads\Movies\MovieSubImages\83c745f4-affa-417f-8682-f1eeb5c99a87-22.jpg
 wwwroot\Uploads\Movies\MovieSubImages\92ddbbe8-995d-4957-a8be-bfc446564cf4-22.jpg
 wwwroot\Uploads\Movies\MovieSubImages\9c49876b-b93c-452f-be77-23a27747596c-55.jpg
-wwwroot\Uploads\Movies\MovieSubImages\a1c6343a-cc3a-4f5a-9f51-a50696031916-22.jpg
 wwwroot\Uploads\Movies\MovieSubImages\a7f1d151-95d7-49c1-b3e1-bb85086f2922-44.jpg
 wwwroot\Uploads\Movies\MovieSubImages\b54b9196-d834-4efc-94b3-612aab2c4a17-66.jpg
 wwwroot\Uploads\Movies\MovieSubImages\eacfbb1c-ccd0-4882-b715-f82dfb8239ee-11.jpg

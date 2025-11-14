@@ -1,9 +1,13 @@
-using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using Template_Project.Models;
+using Template_Project.Utilities;
 
 namespace Template_Project.Controllers
 {
+    [Area("Admin")]
+    [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -13,6 +17,7 @@ namespace Template_Project.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
         public IActionResult Index()
         {
             return View();

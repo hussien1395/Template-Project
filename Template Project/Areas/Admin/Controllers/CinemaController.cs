@@ -1,16 +1,27 @@
 ﻿using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Drawing2D;
 using Template_Project.Models;
 using Template_Project.Repos;
+using Template_Project.Utilities;
 using Template_Project.ViewModel;
 
 namespace Template_Project.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
     public class CinemaController : Controller
     {
         //ApplicationDbContext _context = new ApplicationDbContext();
-        Repository<Cinema> _cinemaRepository = new Repository<Cinema>();
+        private readonly IRepository<Cinema> _cinemaRepository;// = new Repository<Cinema>();
+
+        public CinemaController(IRepository<Cinema> cinemaRepository)
+        {
+            _cinemaRepository = cinemaRepository;
+        }
+
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
         public async Task<ViewResult> Index(CancellationToken cancellationToken)
         {
             //var cinemas = _context.Cinemas.AsQueryable();
@@ -19,11 +30,14 @@ namespace Template_Project.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
         public ViewResult Create()
         {
             return View();
         }
+
         [HttpPost]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
         public async Task<IActionResult> Create(CreateCinemaVM createCinemaVM, CancellationToken cancellationToken)
         {
             //ModelState.Remove(nameof(FormImg));
@@ -68,6 +82,7 @@ namespace Template_Project.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}")]
         public async Task<IActionResult> Update(int id, CancellationToken cancellationToken)
         {
             //var cinema = _context.Cinemas.FirstOrDefault(c=>c.Id==id);
@@ -91,6 +106,7 @@ namespace Template_Project.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}")]
         public async Task<IActionResult> Update(UpdateCinemaVM updateCinemaVM, CancellationToken cancellationToken)
         {
             //var currentCinema = _context.Cinemas.AsNoTracking().FirstOrDefault(b => b.Id == updateCinemaVM.Id);
@@ -146,6 +162,7 @@ namespace Template_Project.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}")]
         public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
         {
             //var cinema = _context.Cinemas.FirstOrDefault(c => c.Id == id);
