@@ -10,7 +10,10 @@ using Template_Project.ViewModel;
 namespace Template_Project.Areas.Admin.Controllers
 {
     [Area("Admin")]
+<<<<<<< HEAD
     [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
+=======
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
     public class CinemaController : Controller
     {
         //ApplicationDbContext _context = new ApplicationDbContext();
@@ -21,7 +24,10 @@ namespace Template_Project.Areas.Admin.Controllers
             _cinemaRepository = cinemaRepository;
         }
 
+<<<<<<< HEAD
         [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
+=======
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
         public async Task<ViewResult> Index(CancellationToken cancellationToken)
         {
             //var cinemas = _context.Cinemas.AsQueryable();

@@ -8,7 +8,10 @@ using Template_Project.Utilities;
 namespace Template_Project.Areas.Admin.Controllers
 {
     [Area("Admin")]
+<<<<<<< HEAD
     [Authorize(Roles = $"{SData.SUPPER_ADMIN_ROLE}, {SData.ADMIN_ROLE}, {SData.EMPLOYEE_ROLE}")]
+=======
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
     public class MovieController : Controller
     {
         //ApplicationDbContext _context = new ApplicationDbContext();
@@ -19,6 +22,20 @@ namespace Template_Project.Areas.Admin.Controllers
         private readonly IRepository<Movie> _movieRepository;//= new Repository<Movie>();
         private readonly IRepository<MovieActor> _movieActorRepository;// = new Repository<MovieActor>();
         private readonly IRepository<MovieSubImage> _movieSubImageRepository;// = new Repository<MovieSubImage>();
+<<<<<<< HEAD
+=======
+
+        public MovieController(IRepository<Category> categoryRepository, IRepository<Cinema> cinemaRepository, IRepository<Actor> actorRepository, IRepository<Movie> movieRepository, 
+            IRepository<MovieActor> movieActorRepository, IRepository<MovieSubImage> movieSubImageRepository)
+        {
+            _categoryRepository = categoryRepository;
+            _cinemaRepository = cinemaRepository;
+            _actorRepository = actorRepository;
+            _movieRepository = movieRepository;
+            _movieActorRepository = movieActorRepository;
+            _movieSubImageRepository = movieSubImageRepository;
+        }
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
 
         public MovieController(IRepository<Category> categoryRepository, IRepository<Cinema> cinemaRepository, IRepository<Actor> actorRepository, IRepository<Movie> movieRepository, 
             IRepository<MovieActor> movieActorRepository, IRepository<MovieSubImage> movieSubImageRepository)

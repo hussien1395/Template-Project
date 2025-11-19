@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -5,6 +6,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using System.Threading.Tasks;
 using Template_Project.Models;
+=======
+﻿using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
 
 namespace Template_Project.Areas.Identity.Controllers
 {
@@ -145,6 +154,10 @@ namespace Template_Project.Areas.Identity.Controllers
 
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
         public IActionResult ResendEmailConfirmation()
         {
             return View();
@@ -253,6 +266,7 @@ namespace Template_Project.Areas.Identity.Controllers
                 return View(validateOTPVM);
             }
 
+<<<<<<< HEAD
             if (DateTime.UtcNow > applicationUserOTP.ExpireAt)
             {
                 applicationUserOTP.IsValid = false;
@@ -267,12 +281,19 @@ namespace Template_Project.Areas.Identity.Controllers
             await _applicationUserOTPRepository.CommitAsync();
             TempData["OTPValidateUserId"] = user.Id;
             return RedirectToAction("ResetPassword", new { applicationuserId = user.Id });
+=======
+            applicationUserOTP.IsValid = false;
+            _applicationUserOTPRepository.Update(applicationUserOTP);
+            await _applicationUserOTPRepository.CommitAsync();
+            return RedirectToAction("ResetPassword", new {applicationuserId=user.Id});
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
 
         }
 
         [HttpGet]
         public IActionResult ResetPassword(string applicationUserId)
         {
+<<<<<<< HEAD
             var OTPValidateUserId = TempData["OTPValidateUserId"]?.ToString();
             if (String.IsNullOrEmpty(OTPValidateUserId) || OTPValidateUserId != applicationUserId)
             {
@@ -281,6 +302,8 @@ namespace Template_Project.Areas.Identity.Controllers
             }
             TempData.Keep("OTPValidateUserId");
 
+=======
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
             var vm = new ResetPasswordVM
             {
                 ApplicationUserId = applicationUserId
@@ -292,6 +315,7 @@ namespace Template_Project.Areas.Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> ResetPassword(ResetPasswordVM resetPasswordVM)
         {
+<<<<<<< HEAD
             var OTPValidateUserId = TempData["OTPValidateUserId"]?.ToString();
             if (String.IsNullOrEmpty(OTPValidateUserId) || OTPValidateUserId != resetPasswordVM.ApplicationUserId)
             {
@@ -299,6 +323,8 @@ namespace Template_Project.Areas.Identity.Controllers
                 return RedirectToAction("ForgetPassword");
             }
 
+=======
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
             var user = await _userManager.FindByIdAsync(resetPasswordVM.ApplicationUserId);
 
             if (user == null)
@@ -308,7 +334,11 @@ namespace Template_Project.Areas.Identity.Controllers
             }
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+<<<<<<< HEAD
             var result = await _userManager.ResetPasswordAsync(user, token, resetPasswordVM.NewPassword);
+=======
+            var result= await _userManager.ResetPasswordAsync(user, token, resetPasswordVM.NewPassword);
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
 
             if (!result.Succeeded)
             {
@@ -319,6 +349,7 @@ namespace Template_Project.Areas.Identity.Controllers
                 return View(resetPasswordVM);
             }
 
+<<<<<<< HEAD
             TempData.Remove("OTPValidateUserId");
             return RedirectToAction("Login");
 
@@ -329,5 +360,10 @@ namespace Template_Project.Areas.Identity.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home", new { area = "Admin" });
         }
+=======
+            return RedirectToAction("Login");
+
+        }
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
     }
 }

@@ -1,7 +1,10 @@
 using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 using Template_Project.Configuration;
 using Template_Project.Utilities;
+=======
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
 
 namespace Template_Project
 {
@@ -21,6 +24,7 @@ namespace Template_Project
 
             //AppConfiguration.Config(builder.Services, connectionString);
             builder.Services.Config(connectionString);
+<<<<<<< HEAD
             builder.Services.RegisterMapsterConfig();
 
             var app = builder.Build();
@@ -31,6 +35,11 @@ namespace Template_Project
                 dbInitializer.Initializer();
             }
 
+=======
+
+            var app = builder.Build();
+
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

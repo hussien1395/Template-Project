@@ -18,7 +18,10 @@ namespace Template_Project.DataAccess
         public DbSet<MovieSubImage> MovieSubImages { get; set; }
         public DbSet<MovieActor> MovieActors { get; set; }
         public DbSet<ApplicationUserOTP> ApplicationUserOTPs { get; set; }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
         //override protected void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog = Template_Project;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;");

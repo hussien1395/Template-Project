@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 using Template_Project.Utilities;
+=======
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
 
 namespace Template_Project
 {
@@ -13,9 +16,12 @@ namespace Template_Project
           
             service.AddDbContext<ApplicationDbContext>(options =>
             {
+<<<<<<< HEAD
                 //options.UseSqlServer(builder.Configuration.GetSection("ConnectionString")["DefaultConnection"]);
                 //options.UseSqlServer(builder.Configuration["ConnectionString:DefaultConnection"]);
                 //options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+=======
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
                 options.UseSqlServer(connectionString);
             });
 
@@ -29,6 +35,7 @@ namespace Template_Project
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+<<<<<<< HEAD
             service.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = $"/Identity/Account/Login";
@@ -39,13 +46,21 @@ namespace Template_Project
             service.AddScoped<IRepository<Category>, Repository<Category>>();
             //service.AddSingleton<IRepository<Category>, Repository<Category>>();
             //service.AddTransient<IRepository<Category>, Repository<Category>>();
+=======
+            service.AddTransient<IEmailSender, EmailSender>();
+
+            service.AddScoped<IRepository<Category>, Repository<Category>>();
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
             service.AddScoped<IRepository<Actor>, Repository<Actor>>();
             service.AddScoped<IRepository<Cinema>, Repository<Cinema>>();
             service.AddScoped<IRepository<Movie>, Repository<Movie>>();
             service.AddScoped<IRepository<MovieActor>, Repository<MovieActor>>();
             service.AddScoped<IRepository<MovieSubImage>, Repository<MovieSubImage>>();
             service.AddScoped<IRepository<ApplicationUserOTP>, Repository<ApplicationUserOTP>>();
+<<<<<<< HEAD
             service.AddScoped<IDBInitializer, DBInitializer>();
+=======
+>>>>>>> 47837ba82ed9ef513408b815d13bf8256bfb6f04
         }
     }
 }
